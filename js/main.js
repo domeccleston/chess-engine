@@ -9,11 +9,23 @@ function makeRandomMove() {
   // exit if the game is over
   if (game.game_over()) return;
 
-  // choses a random index in the list
-  var randomIdx = Math.floor(Math.random() * possibleMoves.length);
+  // check for possible captures
+  const possibleCaptures = possibleMoves.filter((move) => {
+    return move.includes("x");
+  });
+
+  let randomMove;
+
+  if (possibleCaptures.length) {
+    // if there are captures, pick one at random
+   randomMove = possibleCaptures[Math.floor(Math.random() * possibleCaptures.length)];
+  } else {
+    // if there are no captures, pick a random move
+    randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+  }
 
   // updates javascript board state
-  game.move(possibleMoves[randomIdx]);
+  game.move(randomMove);
 
   // changes html board state
   board.position(game.fen());
