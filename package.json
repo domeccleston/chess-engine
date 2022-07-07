@@ -1,5 +1,10 @@
 {
   "dependencies": {
+    "node-cmd": "^5.0.0",
     "parcel": "^2.6.2"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "rm -rf .parcel-cache && node copyFiles.js && parcel build index.html"
   }
 }
