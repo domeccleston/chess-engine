@@ -4,7 +4,8 @@
 - build naive implementation of minimax [x]
 - use michniewski piece values [x]
 - add piece-square tables [x]
-- refactor to use parcel [ ]
+- refactor to use parcel [x]
+- deploy to vercel [x]
 - break single script into multiple [ ]
 - implement a/b pruning [ ]
 - 
