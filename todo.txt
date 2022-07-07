@@ -1,0 +1,10 @@
+- build engine that makes a random move [x]
+- engine moves randomly, taking if possible [x]
+- add evaluation function that subtracts black pieces from white [x]
+- build naive implementation of minimax [x]
+- use michniewski piece values [x]
+- add piece-square tables [x]
+- refactor to use parcel [ ]
+- break single script into multiple [ ]
+- implement a/b pruning [ ]
+- 

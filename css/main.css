@@ -37,3 +37,13 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+h1 {
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.hidden {
+  display: none;
+}
