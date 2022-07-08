@@ -193,7 +193,7 @@ function getEvaluation(game) {
   return evaluation;
 }
 
-function minimax(position, depth, player) {
+function minimax(position, depth, alpha, beta, player) {
   // Base case: just return the evaluation of the position
   if (depth === 0) {
     return getEvaluation(position);
@@ -204,18 +204,32 @@ function minimax(position, depth, player) {
     let maxEval = -Infinity;
     for (const move of position.moves()) {
       position.move(move);
-      maxEval = Math.max(maxEval, minimax(position, depth - 1, false));
+      maxEval = Math.max(
+        maxEval,
+        minimax(position, depth - 1, alpha, beta, false)
+      );
       position.undo();
-      return maxEval;
+      alpha = Math.max(alpha, maxEval);
+      if (alpha >= beta) {
+        return maxEval;
+      }
     }
+    return maxEval;
   } else {
     let minEval = Infinity;
     for (const move of position.moves()) {
       position.move(move);
-      minEval = Math.min(minEval, minimax(position, depth - 1, true));
+      minEval = Math.min(
+        minEval,
+        minimax(position, depth - 1, alpha, beta, true)
+      );
       position.undo();
-      return minEval;
+      beta = Math.min(beta, minEval);
+      if (alpha >= beta) {
+        return minEval;
+      }
     }
+    return minEval;
   }
 }
 
@@ -224,7 +238,7 @@ function minimax(position, depth, player) {
  * up to a specified depth. Assume white will choose the move with the
  * best evaluation each time.
  */
-function minimaxRoot(player = true, depth = 4) {
+function minimaxRoot(player = true, depth = 2) {
   const moves = game.moves();
   let bestMove = Infinity;
   let bestMoveFound;
@@ -234,7 +248,7 @@ function minimaxRoot(player = true, depth = 4) {
   for (const [i, move] of moves.entries()) {
     console.log({ i, move });
     game.move(move);
-    let value = minimax(game, depth - 1, player);
+    let value = minimax(game, depth - 1, -Infinity, Infinity, player);
     game.undo();
     if (value <= bestMove) {
       bestMove = value;
