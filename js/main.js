@@ -238,7 +238,7 @@ function minimax(position, depth, alpha, beta, player) {
  * up to a specified depth. Assume white will choose the move with the
  * best evaluation each time.
  */
-function minimaxRoot(player = true, depth = 2) {
+function minimaxRoot(player = true, depth = 3) {
   const moves = game.moves();
   let bestMove = Infinity;
   let bestMoveFound;
